@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace DoctrineMigrations;
+namespace Migrations;
 
-use App\Entity\User;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
