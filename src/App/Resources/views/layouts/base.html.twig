@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ default_locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ asset('build/vendors~app.css') }}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    {% include 'components/_navbar.html.twig' %}
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="{{ path('home') }}" class="brand-link text-center">
+            <span class="brand-text font-weight-light">Dashboard</span>
+        </a>
+
+        {% include 'components/_sidebar.html.twig' %}
+    </aside>
+    <!-- /.main-sidebar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <h1 class="m-0 text-dark">{{ block('title') }}</h1>
+            </div>
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body table-responsive">
+                        {% include 'components/_flashes.html.twig' %}
+
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<script src="{{ asset('build/runtime.js') }}" crossorigin="anonymous"></script>
+<script src="{{ asset('build/vendors~app.js') }}" crossorigin="anonymous"></script>
+<script src="{{ asset('build/app.js') }}" crossorigin="anonymous"></script>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #343a40;
+}
+
+.main-header {
+  z-index: 10001;
+}
+
+.main-sidebar {
+  z-index: 10002;
+}
+
+.wrapper {
+  background-color: #f4f6f9;
+}
+
+.wrapper .content-wrapper {
+  position: relative;
+  min-height: calc(100vh - 57px) !important;
+}
+
+@media (max-width: 576px) {
+  .main-sidebar,
+  .main-sidebar:before {
+    margin-left: -250px;
+  }
+}
