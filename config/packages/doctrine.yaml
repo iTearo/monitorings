@@ -10,7 +10,7 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         charset: utf8
         default_table_options:
-            charset: mb4utf8
+            charset: utf8
 
     orm:
         auto_generate_proxy_classes: true
