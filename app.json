@@ -1,0 +1,9 @@
+{
+  "name": "Monitorings site",
+  "repository": "https://github.com/iTearo/monitorings",
+  "addons": [
+    {
+      "plan": "jawsdb-maria:kitefin"
+    }
+  ]
+}
