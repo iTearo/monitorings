@@ -27,6 +27,7 @@
         "symfony/security-core": "5.1.*",
         "symfony/serializer-pack": "*",
         "symfony/string": "5.1.*",
+        "symfony/translation": "5.1.*",
         "symfony/twig-pack": "*",
         "symfony/validator": "5.1.*",
         "symfony/web-link": "5.1.*",
@@ -35,6 +36,7 @@
         "symfonycasts/verify-email-bundle": "^1.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "roave/security-advisories": "dev-master",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
@@ -69,6 +71,9 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "compile": [
+            "bin/console doctrine:migrations:migrate"
+        ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
