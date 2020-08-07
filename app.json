@@ -17,7 +17,14 @@
       "required": true
     }
   },
-  "image": "heroku/php",
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
   "addons": [
     {
       "plan": "jawsdb-maria:kitefin"
