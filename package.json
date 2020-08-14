@@ -1,6 +1,7 @@
 {
     "dependencies": {
         "@symfony/webpack-encore": "^0.30.2",
+        "@ttskch/select2-bootstrap4-theme": "^1.4.0",
         "admin-lte": "^3",
         "bootstrap": "^4",
         "core-js": "^3.0.0",
@@ -10,6 +11,7 @@
         "node-sass": "^4.14.1",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^8",
+        "select2": "^4.0.13",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",

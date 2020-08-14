@@ -5,6 +5,7 @@ window.$ = window.jQuery = require('jquery');
 require('bootstrap');
 require('admin-lte');
 require('moment');
+require('select2');
 import "@fortawesome/fontawesome-free/js/all.js";
 
 /**
@@ -14,6 +15,8 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "admin-lte/dist/css/adminlte.min.css";
 import "ionicons/dist/scss/ionicons.scss";
+import "select2/dist/css/select2.min.css";
+import "@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css";
 import '../css/app.scss';
 
 /**
@@ -39,3 +42,7 @@ $('#sidebar-toggle').on('shown.lte.pushmenu', function () {
 });
 
 $('.wrapper > .content-wrapper').css({"min-height": $(window).height() - 57});
+
+$('.select2').select2({
+    theme: "bootstrap4"
+});
