@@ -1,0 +1,33 @@
+{
+  "name": "Monitorings site",
+  "keywords": [
+    "php",
+    "symfony"
+  ],
+  "repository": "https://github.com/iTearo/monitorings",
+  "env": {
+    "APP_ENV": {
+      "description": "Application environment"
+    },
+    "APP_SECRET": {
+      "description": "String required to generate CSRF tokens"
+    },
+    "DATABASE_URL": {
+      "description": "URL containing credentials for connecting to PostgresQL database",
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "jawsdb-maria:kitefin"
+    }
+  ]
+}

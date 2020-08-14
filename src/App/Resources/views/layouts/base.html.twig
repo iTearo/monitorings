@@ -7,7 +7,6 @@
 
     <title>{% block title %}Welcome!{% endblock %}</title>
 
-    <link rel="stylesheet" href="{{ asset('build/vendors~app.css') }}" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('build/app.css') }}" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -61,7 +60,6 @@
 
 <!-- REQUIRED SCRIPTS -->
 <script src="{{ asset('build/runtime.js') }}" crossorigin="anonymous"></script>
-<script src="{{ asset('build/vendors~app.js') }}" crossorigin="anonymous"></script>
 <script src="{{ asset('build/app.js') }}" crossorigin="anonymous"></script>
 
 {% block javascripts %}{% endblock %}
