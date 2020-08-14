@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block body %}
+    <h1>#{{ status_code }}</h1>
+
+    <h2>{{ exception.message }}</h2>
+
+    <p>
+        The requested page couldn't be located.
+        Checkout for any URL misspelling or <a href="{{ path('home') }}">return to the main page</a>.
+    </p>
+{% endblock %}
