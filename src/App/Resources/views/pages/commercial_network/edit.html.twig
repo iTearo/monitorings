@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Редактирование торговой сети{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+    {{ form_end(form) }}
+{% endblock %}

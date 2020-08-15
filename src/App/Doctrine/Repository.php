@@ -40,6 +40,37 @@ class Repository extends EntityRepository
         return $this->findByIdOrFail($id);
     }
 
+    public function findByGuid(string $guid): ?object
+    {
+        return $this->find($guid);
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function findByGuidOrFail(string $guid): object
+    {
+        $entity = $this->findByGuid($guid);
+
+        if ($entity === null) {
+            throw new NotFoundException(sprintf('Entity of %s with guid %s not found', $this->getClassName(), $guid));
+        }
+
+        return $entity;
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function findByGuidOrFailAllowNull(string $guid): ?object
+    {
+        if ($guid === null) {
+            return null;
+        }
+
+        return $this->findByGuidOrFail($guid);
+    }
+
     public function save(object $entity): void
     {
         /** @noinspection PhpUnhandledExceptionInspection */
