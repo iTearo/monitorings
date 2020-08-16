@@ -74,12 +74,12 @@ class OutletController extends BaseController
                     self::createOutletDto($request)
                 );
 
-                $this->addFlash('success', 'Успешно сохранено');
+                $this->successSaving();
 
                 return $this->redirectToRoute('outlet_edit', ['id' => $outlet->getId()]);
 
             } catch (RequestValidationException $exception) {
-                $this->addFlash('error', 'Исправьте неправильно заполненные поля');
+                $this->formInvalid();
             }
         }
 
@@ -118,12 +118,12 @@ class OutletController extends BaseController
                     self::createOutletDto($request)
                 );
 
-                $this->addFlash('success', 'Успешно сохранено');
+                $this->successSaving();
 
                 return $this->redirectToRoute('outlet_edit', ['id' => $outlet->getId()]);
 
             } catch (RequestValidationException $exception) {
-                $this->addFlash('error', 'Исправьте неправильно заполненные поля');
+                $this->formInvalid();
             }
         }
 

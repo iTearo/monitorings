@@ -14,7 +14,17 @@ abstract class BaseController extends AbstractController
 {
     protected const FORM_ATTRIBUTE = 'form';
 
-    public function makeForm(string $formType, object $entity): FormInterface
+    protected function successSaving(): void
+    {
+        $this->addFlash('success', 'Успешно сохранено');
+    }
+
+    protected function formInvalid(): void
+    {
+        $this->addFlash('error', 'Исправьте неправильно заполненные поля');
+    }
+
+    protected function makeForm(string $formType, object $entity): FormInterface
     {
         /** @var FormBuilderInterface $formBuilder */
         $formBuilder = $this->container->get('form.factory')->createBuilder();
@@ -27,7 +37,7 @@ abstract class BaseController extends AbstractController
     /**
      * @throws RequestValidationException
      */
-    public function validateRequest(Request $request, FormInterface $form): void
+    protected function validateRequest(Request $request, FormInterface $form): void
     {
         $form->handleRequest($request);
         if ($form->isSubmitted() && ! $form->isValid()) {

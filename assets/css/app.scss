@@ -1,3 +1,5 @@
+// base styles START
+
 * {
   z-index: 2; // hoverable-button related hack
 }
@@ -30,6 +32,11 @@ body {
     margin-left: -250px;
   }
 }
+
+// base styles END
+
+
+// additional styles START
 
 .hoverable-button {
   align-items: center;
@@ -68,6 +75,26 @@ body {
   transform: scale(1);
 }
 
+// additional styles END
+
+
+// bootstrap overrides START
+
+.pagination {
+  margin: 16px 0;
+}
+
+.select2-container {
+  max-width: 100%;
+}
+
+// bootstrap overrides END
+
+
+// listing page styles START
+
 .actions-column {
   width: 50px;
 }
+
+// listing page styles END

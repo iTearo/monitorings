@@ -72,12 +72,12 @@ class CommercialNetworkController extends BaseController
                     self::createCommercialNetworkDto($request)
                 );
 
-                $this->addFlash('success', 'Успешно сохранено');
+                $this->successSaving();
 
                 return $this->redirectToRoute('commercial_network_edit', ['id' => $commercialNetwork->getId()]);
 
             } catch (RequestValidationException $exception) {
-                $this->addFlash('error', 'Исправьте неправильно заполненные поля');
+                $this->formInvalid();
             }
         }
 
@@ -112,12 +112,12 @@ class CommercialNetworkController extends BaseController
                     self::createCommercialNetworkDto($request)
                 );
 
-                $this->addFlash('success', 'Успешно сохранено');
+                $this->successSaving();
 
                 return $this->redirectToRoute('commercial_network_edit', ['id' => $commercialNetwork->getId()]);
 
             } catch (RequestValidationException $exception) {
-                $this->addFlash('error', 'Исправьте неправильно заполненные поля');
+                $this->formInvalid();
             }
         }
 
