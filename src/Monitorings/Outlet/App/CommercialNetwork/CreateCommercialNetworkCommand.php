@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Monitorings\Outlet\App;
+namespace Monitorings\Outlet\App\CommercialNetwork;
 
 use App\Exception\NotFoundException;
 use Monitorings\Outlet\App\Dto\CommercialNetworkDto;

@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Monitorings\Outlet\App;
+namespace Monitorings\Outlet\App\Outlet;
 
 use App\Exception\NotFoundException;
-use Monitorings\Identity;
 use Monitorings\Outlet\App\Dto\OutletDto;
 use Monitorings\Outlet\Domain\Address;
 use Monitorings\Outlet\Domain\CommercialNetworkRepository;
 use Monitorings\Outlet\Domain\Outlet;
 use Monitorings\Outlet\Domain\OutletRepository;
 
-class UpdateOutletCommand
+class CreateOutletCommand
 {
     private OutletRepository $outletRepository;
 
@@ -29,15 +28,10 @@ class UpdateOutletCommand
     /**
      * @throws NotFoundException
      */
-    public function execute(Identity $id, OutletDto $outletDto): Outlet
+    public function execute(OutletDto $outletDto): Outlet
     {
-        $outlet = $this->outletRepository->getByIdOrFail($id);
-
-        $outlet->setCommercialNetwork(
-            $this->commercialNetworkRepository->getByIdOrFail($outletDto->commercialNetworkId)
-        );
-
-        $outlet->setAddress(
+        $outlet = new Outlet(
+            $this->commercialNetworkRepository->getByIdOrFail($outletDto->commercialNetworkId),
             new Address(
                 $outletDto->address->building,
                 $outletDto->address->street,

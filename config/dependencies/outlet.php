@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Monitorings\Outlet\App\CreateCommercialNetworkCommand;
-use Monitorings\Outlet\App\CreateOutletCommand;
-use Monitorings\Outlet\App\UpdateCommercialNetworkCommand;
-use Monitorings\Outlet\App\UpdateOutletCommand;
+use Monitorings\Outlet\App\CommercialNetwork\CreateCommercialNetworkCommand;
+use Monitorings\Outlet\App\Outlet\CreateOutletCommand;
+use Monitorings\Outlet\App\CommercialNetwork\UpdateCommercialNetworkCommand;
+use Monitorings\Outlet\App\Outlet\UpdateOutletCommand;
 use Monitorings\Outlet\Data\DoctrineCommercialNetworkRepository;
 use Monitorings\Outlet\Data\DoctrineOutletRepository;
 use Monitorings\Outlet\Domain\CommercialNetwork;
