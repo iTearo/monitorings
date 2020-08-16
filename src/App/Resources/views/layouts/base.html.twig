@@ -34,7 +34,14 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <h1 class="m-0 text-dark">{{ block('title') }}</h1>
+                <div class="row">
+                    <div class="col-6 col-lg-6">
+                        <h1 class="m-0 text-dark">{{ block('title') }}</h1>
+                    </div>
+                    <div class="col-6 col-lg-6 text-right">
+                        {% block actions %}{% endblock %}
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.content-header -->

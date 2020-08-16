@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Monitorings\Outlet\App\CreateOutletCommand;
 use Monitorings\Outlet\App\UpdateCommercialNetworkCommand;
 use Monitorings\Outlet\App\UpdateOutletCommand;
 use Monitorings\Outlet\Data\DoctrineCommercialNetworkRepository;
@@ -34,5 +35,10 @@ $container
 
 $container
     ->register(UpdateCommercialNetworkCommand::class)
+    ->setAutowired(true)
+;
+
+$container
+    ->register(CreateOutletCommand::class)
     ->setAutowired(true)
 ;
