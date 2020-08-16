@@ -11,6 +11,9 @@ doctrine:
         charset: utf8
         default_table_options:
             charset: utf8
+        types:
+            identity_type: App\Doctrine\Type\IdentityType
+            address_type: App\Doctrine\Type\AddressType
 
     orm:
         auto_generate_proxy_classes: true
