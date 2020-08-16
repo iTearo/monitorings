@@ -4,6 +4,8 @@
 
 {% block title %}Торговые сети{% endblock %}
 
+{% block actions %}<a class="btn btn-success" href="{{ path('commercial_network_create') }}">Создать</a>{% endblock %}
+
 {% block body %}
     {% include 'components/_pagination.html.twig' with pagination.pageInfo.toArray only %}
 

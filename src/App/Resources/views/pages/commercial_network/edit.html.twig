@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title %}Редактирование торговой сети{% endblock %}
+{% block title %}{{ isNew ? 'Новая торговая сеть' : 'Редактирование торговой сети' }}{% endblock %}
 
 {% block body %}
     {{ form_start(form) }}
