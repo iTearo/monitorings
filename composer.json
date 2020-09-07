@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "phpspec/prophecy-phpunit": "^2.0",
         "ramsey/uuid": "^4.1",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
@@ -58,7 +59,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "TestTools\\": "tests/TestTools",
+            "App\\": "tests/App",
+            "Monitorings\\": "tests/Monitorings"
         }
     },
     "replace": {

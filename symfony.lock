@@ -144,6 +144,9 @@
     "phpspec/prophecy": {
         "version": "1.11.1"
     },
+    "phpspec/prophecy-phpunit": {
+        "version": "v2.0.1"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.1.4"
     },
