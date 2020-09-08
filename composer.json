@@ -9,8 +9,11 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "doctrine/doctrine-bundle": "^2.1",
+        "doctrine/orm": "^2.7",
         "phpspec/prophecy-phpunit": "^2.0",
         "ramsey/uuid": "^4.1",
+        "robmorgan/phinx": "^0.12.4",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
         "symfony/console": "5.1.*",
@@ -25,7 +28,6 @@
         "symfony/mime": "5.1.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "5.1.*",
-        "symfony/orm-pack": "^2",
         "symfony/process": "5.1.*",
         "symfony/security-bundle": "5.1.*",
         "symfony/security-core": "5.1.*",
@@ -40,7 +42,6 @@
         "symfonycasts/verify-email-bundle": "^1.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "phpunit/phpunit": "^9.3",
         "roave/security-advisories": "dev-master",
         "symfony/debug-pack": "*",
