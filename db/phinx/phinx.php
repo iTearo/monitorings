@@ -20,9 +20,14 @@ function parseAgnosticDsn(string $dsn): ?array
     return null;
 }
 
-function makeConfig(string $envFilePath): ?array
+function makeConfig(string $envFilePath, bool $overrideExistingVars = false): ?array
 {
     $envs = (new Dotenv())->parse(file_get_contents($envFilePath), $envFilePath);
+
+    if ($overrideExistingVars === false) {
+        array_filter($envs, fn($envKey) => getenv($envKey), ARRAY_FILTER_USE_KEY);
+    }
+
     return parseAgnosticDsn($envs['DATABASE_URL']);
 }
 
@@ -42,7 +47,7 @@ return [
         'default_migration_table' => 'phinx_log',
         'default_environment' => 'app',
         'app' => makeConfig($appRootDir . '/.env'),
-        'test' => makeConfig($appRootDir . '/.env.test'),
+        'test' => makeConfig($appRootDir . '/.env.test', true),
     ],
     'version_order' => 'execution',
 ];
