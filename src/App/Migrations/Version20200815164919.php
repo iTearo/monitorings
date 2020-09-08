@@ -22,7 +22,7 @@ final class Version20200815164919 extends AbstractMigration
                 commercial_network_id CHAR(36) NOT NULL,
                 address LONGTEXT NOT NULL,
                 created_at TIMESTAMP NOT NULL,
-                updated_at TIMESTAMP NOT NULL,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY(id)
             )
         SQL);
