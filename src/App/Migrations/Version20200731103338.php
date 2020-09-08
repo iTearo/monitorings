@@ -21,7 +21,7 @@ final class Version20200731103338 extends AbstractMigration
                 id CHAR(36) NOT NULL,
                 title VARCHAR(128) NOT NULL,
                 created_at TIMESTAMP NOT NULL,
-                updated_at TIMESTAMP NOT NULL,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY(id)
             )
         SQL);

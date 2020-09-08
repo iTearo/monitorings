@@ -1,0 +1,54 @@
+name: Testing
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  testing:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        ports: ["3306:3306"]
+        env:
+          MYSQL_DATABASE: monitorings_test
+          MYSQL_ROOT_PASSWORD: 123
+
+    env:
+      DATABASE_URL: mysql://root:123@127.0.0.1:3306/monitorings_test?serverVersion=5.7
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Verify database connection
+        run: |
+          while ! mysqladmin ping -h"127.0.0.1" -P"3306" --silent; do
+            sleep 1
+          done
+
+      - name: Execute migrations
+        run: bin/console doctrine:migrations:migrate -q
+
+      - name: Run PHPUnit
+        run: bin/phpunit --coverage-text --colors=never
