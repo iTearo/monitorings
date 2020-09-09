@@ -79,7 +79,7 @@
     },
     "scripts": {
         "compile": [
-            "bin/console doctrine:migrations:migrate"
+            "bin/phinx migrate"
         ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
