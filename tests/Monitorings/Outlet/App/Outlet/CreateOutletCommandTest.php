@@ -11,6 +11,7 @@ use Monitorings\Outlet\App\Dto\OutletDto;
 use Monitorings\Outlet\Domain\CommercialNetwork;
 use Monitorings\Outlet\Domain\CommercialNetworkRepository;
 use Monitorings\Outlet\Domain\OutletRepository;
+use Monitorings\Outlet\OutletAppEnv;
 use Monitorings\Outlet\OutletEnv;
 use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -45,7 +46,6 @@ class CreateOutletCommandTest extends TestCase
 
         // Assert
         $getByIdOrFailMethod->shouldBeCalledOnce();
-        self::assertNotNull($outletDto);
         self::assertEquals($outlet->getCommercialNetwork()->getId(), $commercialNetwork->getId());
         self::assertEquals($outlet->getAddress()->getBuilding(), $outletDto->address->building);
         self::assertEquals($outlet->getAddress()->getStreet(), $outletDto->address->street);
@@ -59,12 +59,14 @@ class CreateOutletCommandTest extends TestCase
         $outletDto->address = new AddressDto();
         $outletDto->commercialNetworkId = Identity::new();
 
-        $commercialNetworkRepository = self::getContainer()->get(CommercialNetworkRepository::class);
-
-        $createOutletCommand = new CreateOutletCommand($this->makeOutletRepository(), $commercialNetworkRepository);
+        $createOutletCommand = new CreateOutletCommand(
+            $this->makeOutletRepository(),
+            OutletAppEnv::getCommercialNetworkRepository()
+        );
 
         // Assert
         $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessageMatches('/.*CommercialNetwork.*/');
 
         // Act
         $createOutletCommand->execute($outletDto);

@@ -19,11 +19,12 @@ class OutletEnv extends TestEnv
         $addressDto->locality = 'Екатеринбург';
         return $addressDto;
     }
+
     public static function createOutletDto(): OutletDto
     {
-        $addressDto = new OutletDto();
-        $addressDto->address = self::createAddressDto();
-        $addressDto->commercialNetworkId = Identity::new();
-        return $addressDto;
+        $outletDto = new OutletDto();
+        $outletDto->address = self::createAddressDto();
+        $outletDto->commercialNetworkId = Identity::new();
+        return $outletDto;
     }
 }
