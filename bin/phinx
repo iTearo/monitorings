@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+APP_ROOT="$(readlink -f $(dirname $(readlink -f $0))/..)"
+
+cd "${APP_ROOT}/db/phinx"
+
+${APP_ROOT}/vendor/bin/phinx $@

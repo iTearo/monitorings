@@ -48,7 +48,7 @@ jobs:
           done
 
       - name: Execute migrations
-        run: bin/console doctrine:migrations:migrate -q
+        run: bin/phinx migrate
 
       - name: Run PHPUnit
         run: bin/phpunit --coverage-text --colors=never
