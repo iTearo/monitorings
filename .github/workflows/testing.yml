@@ -18,6 +18,7 @@ jobs:
         env:
           MYSQL_DATABASE: monitorings_test
           MYSQL_ROOT_PASSWORD: 123
+        options: --character-set-server=utf8 --collation-server=utf8_general_ci
 
     env:
       DATABASE_URL: mysql://root:123@127.0.0.1:3306/monitorings_test?serverVersion=5.7
