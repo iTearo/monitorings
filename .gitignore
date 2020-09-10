@@ -20,7 +20,8 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
+.DS_Store
 .idea
 /tmp
-/docker-compose.yml
+/docker-compose.override.yml
 /src/App/Command/TestCommand.php

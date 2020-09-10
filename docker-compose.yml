@@ -1,0 +1,81 @@
+version: '3.7'
+
+services:
+
+  php:
+    container_name: monitorings_backend
+    build:
+      context: ./etc/docker/app
+      args:
+        - WITH_XDEBUG=1
+    user: 1000:1000
+    volumes:
+      - ./:/app:cached
+      - ./var/yarn:/.cache/yarn
+      - ./var/composer:/composer
+      - ./etc/docker/app/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    working_dir: /app
+    depends_on:
+      - mariadb
+    links:
+      - mariadb:db.local
+    environment:
+      PHP_IDE_CONFIG: "serverName=local.dev"
+
+  php-no-debug:
+    container_name: monitorings_backend_no_debug
+    build:
+      context: ./etc/docker/app
+      args:
+        - WITH_XDEBUG=0
+    user: 1000:1000
+    volumes:
+      - ./:/app:cached
+      - ./var/yarn:/.cache/yarn
+      - ./var/composer:/composer
+    working_dir: /app
+    depends_on:
+      - mariadb
+    links:
+      - mariadb:db.local
+    environment:
+      PHP_IDE_CONFIG: "serverName=local.dev"
+
+  nginx:
+    container_name: monitorings_frontend
+    build:
+      ./etc/docker/nginx
+    ports:
+      - '127.0.0.1:80:80'
+      - '127.0.0.1:88:88'
+      - '127.0.0.1:9145:9145'
+    volumes:
+      - ./public:/static:cached
+      - ./etc/docker/nginx/dev.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  mariadb:
+    container_name: monitorings_db
+    build:
+      ./etc/docker/db
+    volumes:
+      - ./var/mysql:/var/lib/mysql:cached
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+
+  phpmyadmin:
+    container_name: monitorings_db_admin
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariadb:db.local
+    ports:
+      - 8765:80
+    depends_on:
+      - mariadb
+    environment:
+      PMA_HOST: db.local
+      PMA_USER: root
+      PMA_PASSWORD: 123
