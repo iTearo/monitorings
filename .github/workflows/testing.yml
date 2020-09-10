@@ -24,9 +24,7 @@ jobs:
 
     steps:
       - name: Run MySQL service
-        run: |
-          docker run -e MYSQL_DATABASE=monitorings_test -e MYSQL_ROOT_PASSWORD=123
-          -d -p 3306:3306 mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --port=3306
+        run: docker run -e MYSQL_DATABASE=monitorings_test -e MYSQL_ROOT_PASSWORD=123 -d -p 3306:3306 mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
       - uses: actions/checkout@v2
 
