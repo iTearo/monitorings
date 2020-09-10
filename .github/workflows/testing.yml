@@ -11,18 +11,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:5.7
-        ports: ["3306:3306"]
-        env:
-          MYSQL_DATABASE: monitorings_test
-          MYSQL_ROOT_PASSWORD: 123
-
     env:
+      MYSQL_DATABASE: monitorings_test
+      MYSQL_ROOT_PASSWORD: 123
       DATABASE_URL: mysql://root:123@127.0.0.1:3306/monitorings_test?serverVersion=5.7
 
     steps:
+      - name: Run MySQL service
+        run: |
+          docker run -e MYSQL_DATABASE=$MYSQL_DATABASE -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+            -d -p 3306:3306 mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
       - uses: actions/checkout@v2
 
       - name: Validate composer.json and composer.lock
@@ -34,8 +33,7 @@ jobs:
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
+          restore-keys: ${{ runner.os }}-php-
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'

@@ -8,9 +8,9 @@ parameters:
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
-        charset: utf8
+        charset: utf8mb4
         default_table_options:
-            charset: utf8
+            charset: utf8mb4
         types:
             identity_type: App\Doctrine\Type\IdentityType
             address_type: App\Doctrine\Type\AddressType
