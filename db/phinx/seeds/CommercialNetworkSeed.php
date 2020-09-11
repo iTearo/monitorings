@@ -21,10 +21,6 @@ class CommercialNetworkSeed extends AbstractSeed
             'title' => 'Лента',
         ],
         [
-            'id' => 'd5b8cb9e-b53f-45f4-be9d-e18853e2ba18',
-            'title' => 'Ашан',
-        ],
-        [
             'id' => '8fbf9264-b910-4a33-8f4c-684043c0e64d',
             'title' => 'Пятерочка',
         ],

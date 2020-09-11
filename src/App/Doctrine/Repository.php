@@ -19,11 +19,11 @@ class Repository extends EntityRepository
      */
     public function findByIdOrFail(int $id): object
     {
-        $entity = $this->findById($id);
-
-        if ($entity === null) {
-            throw new NotFoundException(sprintf('Entity of %s with id %s not found', $this->getClassName(), $id));
-        }
+        $this->assertFoundByAttribute(
+            $entity = $this->findById($id),
+            $id,
+            'id'
+        );
 
         return $entity;
     }
@@ -50,11 +50,11 @@ class Repository extends EntityRepository
      */
     public function findByGuidOrFail(string $guid): object
     {
-        $entity = $this->findByGuid($guid);
-
-        if ($entity === null) {
-            throw new NotFoundException(sprintf('Entity of %s with guid %s not found', $this->getClassName(), $guid));
-        }
+        $this->assertFoundByAttribute(
+            $entity = $this->findByGuid($guid),
+            $guid,
+            'guid'
+        );
 
         return $entity;
     }
@@ -87,5 +87,15 @@ class Repository extends EntityRepository
 
         /** @noinspection PhpUnhandledExceptionInspection */
         $this->_em->flush($entity);
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    protected function assertFoundByAttribute(?object $object, $value, ?string $attribute = null): void
+    {
+        if ($object === null) {
+            throw new NotFoundException(sprintf('Entity of %s not found by value "%s" in field "%s"', $this->getClassName(), (string) $value, $attribute));
+        }
     }
 }
