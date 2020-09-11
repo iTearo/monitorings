@@ -7,21 +7,33 @@ namespace App\Controller;
 use App\Exception\NotFoundException;
 use App\Exception\RequestValidationException;
 use App\Form\CommercialNetworkFormType;
+use Monitorings\File\Domain\FileService;
+use Monitorings\File\Domain\UploadedFile;
 use Monitorings\Identity;
 use Monitorings\Outlet\App\CommercialNetwork\CreateCommercialNetworkCommand;
 use Monitorings\Outlet\App\Dto\CommercialNetworkDto;
 use Monitorings\Outlet\App\CommercialNetwork\UpdateCommercialNetworkCommand;
 use Monitorings\Outlet\Domain\CommercialNetwork;
 use Monitorings\Outlet\Domain\CommercialNetworkRepository;
+use Monitorings\User\Domain\User;
+use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route(path="/commercialNetwork", name="commercial_network_")
  */
 class CommercialNetworkController extends BaseController
 {
+    private RouterInterface $router;
+
+    private Security $security;
+
+    private FileService $fileService;
+
     private CreateCommercialNetworkCommand $createCommercialNetworkCommand;
 
     private UpdateCommercialNetworkCommand $updateCommercialNetworkCommand;
@@ -29,10 +41,16 @@ class CommercialNetworkController extends BaseController
     private CommercialNetworkRepository $commercialNetworkRepository;
 
     public function __construct(
+        RouterInterface $router,
+        Security $security,
+        FileService $fileService,
         CreateCommercialNetworkCommand $createCommercialNetworkCommand,
         UpdateCommercialNetworkCommand $updateCommercialNetworkCommand,
         CommercialNetworkRepository $commercialNetworkRepository
     ) {
+        $this->router = $router;
+        $this->security = $security;
+        $this->fileService = $fileService;
         $this->createCommercialNetworkCommand = $createCommercialNetworkCommand;
         $this->updateCommercialNetworkCommand = $updateCommercialNetworkCommand;
         $this->commercialNetworkRepository = $commercialNetworkRepository;
@@ -68,8 +86,19 @@ class CommercialNetworkController extends BaseController
             try {
                 $this->validateRequest($request, $form);
 
+                $commercialNetworkDto = self::createCommercialNetworkDto($request);
+
+                if ($uploadedFile = $this->extractLogotypeFileFromRequest($request)) {
+                    $logotypeFile = $this->fileService->saveFile(
+                        $uploadedFile,
+                        $this->getCurrentUser()
+                    );
+
+                    $commercialNetworkDto->logotypeFileId = $logotypeFile->getId();
+                }
+
                 $commercialNetwork = $this->createCommercialNetworkCommand->execute(
-                    self::createCommercialNetworkDto($request)
+                    $commercialNetworkDto
                 );
 
                 $this->successSaving();
@@ -107,9 +136,23 @@ class CommercialNetworkController extends BaseController
             try {
                 $this->validateRequest($request, $form);
 
+                $commercialNetworkDto = self::createCommercialNetworkDto($request);
+
+                if ($uploadedFile = $this->extractLogotypeFileFromRequest($request)) {
+                    $logotypeFile = $this->fileService->saveFile(
+                        $uploadedFile,
+                        $this->getCurrentUser()
+                    );
+
+                    $commercialNetworkDto->logotypeFileId = $logotypeFile->getId();
+
+                } elseif ($entity->getLogotypeFile() !== null) {
+                    $commercialNetworkDto->logotypeFileId = $entity->getLogotypeFile()->getId();
+                }
+
                 $commercialNetwork = $this->updateCommercialNetworkCommand->execute(
                     Identity::fromString($id),
-                    self::createCommercialNetworkDto($request)
+                    $commercialNetworkDto
                 );
 
                 $this->successSaving();
@@ -124,12 +167,36 @@ class CommercialNetworkController extends BaseController
         return $this->render('pages/commercial_network/edit.html.twig', [
             'isNew' => false,
             'form' => $form->createView(),
+            'logotypeFileUrl' => $entity->getLogotypeFile() === null ? null
+                : $this->router->generate('file_view', ['id' => $entity->getLogotypeFile()->getId()]),
         ]);
+    }
+
+    private function extractLogotypeFileFromRequest(Request $request): ?UploadedFile
+    {
+        /** @var SymfonyUploadedFile|null $sentFile */
+        $sentFile = $request->files->get(self::FORM_ATTRIBUTE)['logotype'];
+
+        if ($sentFile === null) {
+            return null;
+        }
+
+        return UploadedFile::createFromFile(
+            $sentFile,
+            $sentFile->getClientOriginalName()
+        );
+    }
+
+    private function getCurrentUser(): User
+    {
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return $this->security->getUser();
     }
 
     private static function createCommercialNetworkDto(Request $request): CommercialNetworkDto
     {
-        parse_str(urldecode($request->getContent()), $requestData);
-        return CommercialNetworkDto::createFromArray($requestData[self::FORM_ATTRIBUTE]);
+        return CommercialNetworkDto::createFromArray(
+            $request->request->get(self::FORM_ATTRIBUTE)
+        );
     }
 }

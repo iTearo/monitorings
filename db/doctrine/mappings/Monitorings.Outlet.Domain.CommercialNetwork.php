@@ -9,6 +9,7 @@ use App\Doctrine\Type\IdentityType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Monitorings\File\Domain\File;
 use Monitorings\Outlet\Data\DoctrineCommercialNetworkRepository;
 
 $builder = new ClassMetadataBuilder($metadata);
@@ -19,5 +20,7 @@ $builder->setCustomRepositoryClass(DoctrineCommercialNetworkRepository::class);
 $builder->createField('id', IdentityType::TYPE_NAME)->makePrimaryKey()->build();
 
 $builder->addField('title', Types::STRING);
+
+$builder->addOwningOneToOne('logotypeFile', File::class);
 
 ClassMetadataBuilderHelper::addCreatedAndUpdatedDatetimeFields($builder);

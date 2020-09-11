@@ -19,7 +19,7 @@ class IdentityType extends GuidType
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return Identity::fromString($value);
+        return $value === null ? null : Identity::fromString($value);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)

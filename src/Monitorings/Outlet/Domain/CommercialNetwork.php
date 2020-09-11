@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Monitorings\Outlet\Domain;
 
 use Monitorings\CreatedAndUpdatedDatetime;
+use Monitorings\File\Domain\File;
 use Monitorings\Identity;
 
 class CommercialNetwork
@@ -14,6 +15,8 @@ class CommercialNetwork
     private Identity $id;
 
     private string $title;
+
+    private ?File $logotypeFile = null;
 
     public function __construct(
         string $title
@@ -35,5 +38,15 @@ class CommercialNetwork
     public function setTitle(string $title): void
     {
         $this->title = $title;
+    }
+
+    public function getLogotypeFile(): ?File
+    {
+        return $this->logotypeFile;
+    }
+
+    public function setLogotypeFile(?File $logotypeFile): void
+    {
+        $this->logotypeFile = $logotypeFile;
     }
 }
