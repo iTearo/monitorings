@@ -9,7 +9,7 @@ help: ## Справка по командам
 
 
 .PHONY: build
-build: prebuild migrate ## Билд приложения
+build: prebuild migrate tests/migrate tests/run ## Билд приложения
 
 prebuild:
 	@docker-compose up -d
@@ -34,11 +34,6 @@ migrate: ## Выполнение миграций БД
 .PHONY: rollback
 rollback: ## Откат последней миграции БД
 	@docker-compose exec php bin/phinx rollback
-
-
-.PHONY: tests/create-db
-tests/create-db: ## Создание тестовой БД
-	@docker-compose exec mariadb sh -c 'echo "CREATE DATABASE IF NOT EXISTS monitorings_test" | mysql -uroot -p123'
 
 
 .PHONY: tests/run

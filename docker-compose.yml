@@ -64,7 +64,10 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_USER: web
+      MYSQL_PASSWORD: web
+      MYSQL_DATABASE: monitorings
+      MYSQL_ROOT_PASSWORD: 123 # needed for phpmyadmin
 
   phpmyadmin:
     container_name: monitorings_db_admin

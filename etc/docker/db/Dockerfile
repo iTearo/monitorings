@@ -1,5 +1,7 @@
 FROM mariadb:10.5
 
+COPY ./initdb.d/ /docker-entrypoint-initdb.d/
+
 RUN apt-get update &&\
     apt-get install --no-install-recommends -y nano locales && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment && \
@@ -13,5 +15,7 @@ RUN sed -i 's/^bind-address/# bind-address/' /etc/mysql/my.cnf
 ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD ["mysqld", "--character-set-server=utf8", "--collation-server=utf8_general_ci"]
