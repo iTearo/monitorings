@@ -20,7 +20,10 @@ jobs:
     steps:
       - name: Run MySQL service
         run: |
-          docker run -e MYSQL_DATABASE=$MYSQL_DATABASE -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
+          docker run -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
+            -e MYSQL_USER=${MYSQL_USER} \
+            -e MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+            -e MYSQL_DATABASE=${MYSQL_DATABASE} \
             -d -p 3306:3306 mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
       - uses: actions/checkout@v2
