@@ -9,7 +9,7 @@ help: ## Справка по командам
 
 
 .PHONY: build
-build: prebuild migrate tests/migrate tests/run ## Билд приложения
+build: prebuild migrate tests/migrate tests/execute ## Билд приложения
 
 prebuild:
 	@docker-compose up -d
@@ -36,8 +36,13 @@ rollback: ## Откат последней миграции БД
 	@docker-compose exec php bin/phinx rollback
 
 
-.PHONY: tests/run
-tests/run: ## Запуск юнит-тестов
+.PHONY: seed
+seed: ## Выполнение сидеров БД
+	@docker-compose exec php bin/phinx seed:run
+
+
+.PHONY: tests/execute
+tests/execute: ## Запуск юнит-тестов
 	@docker-compose exec php bin/phpunit
 
 
