@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Monitorings\Outlet\Data\DoctrineCommercialNetworkRepository;
+use Domain\Outlet\Data\DoctrineCommercialNetworkRepository;
 use Phinx\Seed\AbstractSeed;
 
 class CommercialNetworkSeed extends AbstractSeed

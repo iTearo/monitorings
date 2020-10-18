@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use Monitorings\File\Domain\MimeType;
-use Monitorings\Outlet\Domain\CommercialNetwork;
+use Domain\File\Domain\MimeType;
+use Domain\Outlet\Domain\CommercialNetwork;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Monitorings\Identity;
-use Monitorings\Outlet\Data\DoctrineOutletRepository;
+use Domain\Common\Identity;
+use Domain\Outlet\Data\DoctrineOutletRepository;
 use Phinx\Seed\AbstractSeed;
 
 class OutletSeed extends AbstractSeed

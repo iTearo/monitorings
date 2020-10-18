@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Monitorings\File\Domain\FileService;
-use Monitorings\Identity;
+use Domain\File\Domain\FileService;
+use Domain\Common\Identity;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;

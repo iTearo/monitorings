@@ -6,7 +6,7 @@ namespace App\Doctrine\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\GuidType;
-use Monitorings\Identity;
+use Domain\Common\Identity;
 
 class IdentityType extends GuidType
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Monitorings\File\Domain\File;
-use Monitorings\File\Domain\FileRepository;
-use Monitorings\File\Domain\FileService;
+use Domain\File\Domain\File;
+use Domain\File\Domain\FileRepository;
+use Domain\File\Domain\FileService;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 

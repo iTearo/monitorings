@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use Monitorings\Outlet\Domain\CommercialNetwork;
-use Monitorings\Outlet\Domain\CommercialNetworkRepository;
-use Monitorings\Outlet\Domain\Outlet;
+use Domain\Outlet\Domain\CommercialNetwork;
+use Domain\Outlet\Domain\CommercialNetworkRepository;
+use Domain\Outlet\Domain\Outlet;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

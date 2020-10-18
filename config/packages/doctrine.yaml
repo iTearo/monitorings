@@ -20,8 +20,8 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            Monitorings:
+            Domain:
                 is_bundle: false
                 type: php
                 dir: '%kernel.project_dir%/db/doctrine/mappings'
-                prefix: 'Monitorings'
+                prefix: 'Domain'
