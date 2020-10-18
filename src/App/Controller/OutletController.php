@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Exception\NotFoundException;
 use App\Exception\RequestValidationException;
 use App\Form\OutletFormType;
-use Domain\Common\Identity;
 use Domain\Outlet\App\Outlet\CreateOutletCommand;
 use Domain\Outlet\App\Dto\OutletDto;
 use Domain\Outlet\App\Outlet\UpdateOutletCommand;
@@ -15,6 +14,7 @@ use Domain\Outlet\Domain\Address;
 use Domain\Outlet\Domain\CommercialNetwork;
 use Domain\Outlet\Domain\Outlet;
 use Domain\Outlet\Domain\OutletRepository;
+use Domain\Outlet\Domain\OutletIdentity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -106,7 +106,7 @@ class OutletController extends BaseController
     {
         $form = $this->makeForm(
             OutletFormType::class,
-            $this->outletRepository->getByIdOrFail(Identity::fromString($id))
+            $this->outletRepository->getByIdOrFail(OutletIdentity::fromString($id))
         );
 
         if ($request->isMethod('post')) {
@@ -114,7 +114,7 @@ class OutletController extends BaseController
                 $this->validateRequest($request, $form);
 
                 $outlet = $this->updateOutletCommand->execute(
-                    Identity::fromString($id),
+                    OutletIdentity::fromString($id),
                     self::createOutletDto($request)
                 );
 

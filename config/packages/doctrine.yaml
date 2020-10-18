@@ -13,6 +13,9 @@ doctrine:
             charset: utf8mb4
         types:
             identity_type: App\Doctrine\Type\IdentityType
+            file_identity_type: App\Doctrine\Type\FileIdentityType
+            outlet_identity_type: App\Doctrine\Type\OutletIdentityType
+            commercial_network_identity_type: App\Doctrine\Type\CommercialNetworkIdentityType
             address_type: App\Doctrine\Type\AddressType
 
     orm:

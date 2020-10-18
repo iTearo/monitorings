@@ -7,8 +7,8 @@ namespace Domain\Outlet\Data;
 use App\Doctrine\Repository;
 use App\Exception\NotFoundException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Domain\Common\Identity;
 use Domain\Outlet\Domain\CommercialNetwork;
+use Domain\Outlet\Domain\CommercialNetworkIdentity;
 use Domain\Outlet\Domain\CommercialNetworkRepository;
 use Domain\Pagination\Pagination;
 
@@ -16,7 +16,7 @@ class DoctrineCommercialNetworkRepository extends Repository implements Commerci
 {
     public const TABLE = 'commercial_network';
 
-    public function getById(Identity $identity): ?CommercialNetwork
+    public function getById(CommercialNetworkIdentity $identity): ?CommercialNetwork
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->findByGuid($identity->toString());
@@ -25,7 +25,7 @@ class DoctrineCommercialNetworkRepository extends Repository implements Commerci
     /**
      * @throws NotFoundException
      */
-    public function getByIdOrFail(Identity $identity): CommercialNetwork
+    public function getByIdOrFail(CommercialNetworkIdentity $identity): CommercialNetwork
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->findByGuidOrFail($identity->toString());

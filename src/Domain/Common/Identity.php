@@ -31,14 +31,14 @@ class Identity
 
     public static function new(): self
     {
-        return new self(
+        return new static(
             Uuid::uuid4()->toString()
         );
     }
 
     public static function fromString(string $guid): self
     {
-        return new self($guid);
+        return new static($guid);
     }
 
     public function toString(): string

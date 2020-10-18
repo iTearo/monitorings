@@ -7,7 +7,6 @@ namespace Domain\File\Domain;
 use App\Exception\NotFoundException;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\FilesystemInterface;
-use Domain\Common\Identity;
 use Domain\User\Domain\User;
 
 class FileService
@@ -24,7 +23,7 @@ class FileService
         $this->fileRepository = $fileRepository;
     }
 
-    public function getFile(Identity $id): ?File
+    public function getFile(FileIdentity $id): ?File
     {
         return $this->fileRepository->get($id);
     }
@@ -32,7 +31,7 @@ class FileService
     /**
      * @throws NotFoundException
      */
-    public function getFileOrFail(Identity $id): File
+    public function getFileOrFail(FileIdentity $id): File
     {
         return $this->fileRepository->getByIdOrFail($id);
     }
@@ -40,7 +39,7 @@ class FileService
     /**
      * @throws NotFoundException
      */
-    public function getFileOrFailAllowNull(?Identity $id): ?File
+    public function getFileOrFailAllowNull(?FileIdentity $id): ?File
     {
         return $this->fileRepository->getByIdOrFailAllowNull($id);
     }

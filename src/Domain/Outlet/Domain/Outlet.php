@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Domain\Outlet\Domain;
 
 use Domain\Common\CreatedAndUpdatedDatetime;
-use Domain\Common\Identity;
 
 class Outlet
 {
     use CreatedAndUpdatedDatetime;
 
-    private Identity $id;
+    private OutletIdentity $id;
 
     private CommercialNetwork $commercialNetwork;
 
@@ -21,12 +20,12 @@ class Outlet
         CommercialNetwork $commercialNetwork,
         ?Address $address
     ) {
-        $this->id = Identity::new();
+        $this->id = OutletIdentity::new();
         $this->commercialNetwork = $commercialNetwork;
         $this->address = $address;
     }
 
-    public function getId(): Identity
+    public function getId(): OutletIdentity
     {
         return $this->id;
     }

@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace Domain\File\Domain;
 
 use App\Exception\NotFoundException;
-use Domain\Common\Identity;
 
 interface FileRepository
 {
-    public function get(Identity $id): ?File;
+    public function get(FileIdentity $id): ?File;
 
     /**
      * @throws NotFoundException
      */
-    public function getByIdOrFail(Identity $id): File;
+    public function getByIdOrFail(FileIdentity $id): File;
 
     /**
      * @throws NotFoundException
      */
-    public function getByIdOrFailAllowNull(?Identity $id): ?File;
+    public function getByIdOrFailAllowNull(?FileIdentity $id): ?File;
 
     public function save(File $file): void;
 

@@ -7,14 +7,14 @@ namespace Domain\File\Data;
 use App\Doctrine\Repository;
 use App\Exception\NotFoundException;
 use Domain\File\Domain\File;
+use Domain\File\Domain\FileIdentity;
 use Domain\File\Domain\FileRepository;
-use Domain\Common\Identity;
 
 class DoctrineFileRepository extends Repository implements FileRepository
 {
     public const TABLE = 'file_upload';
 
-    public function get(Identity $id): ?File
+    public function get(FileIdentity $id): ?File
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->find($id->toString());
@@ -23,7 +23,7 @@ class DoctrineFileRepository extends Repository implements FileRepository
     /**
      * @throws NotFoundException
      */
-    public function getByIdOrFail(Identity $id): File
+    public function getByIdOrFail(FileIdentity $id): File
     {
         $this->assertFoundByAttribute(
             $file = $this->get($id),
@@ -37,7 +37,7 @@ class DoctrineFileRepository extends Repository implements FileRepository
     /**
      * @throws NotFoundException
      */
-    public function getByIdOrFailAllowNull(?Identity $id): ?File
+    public function getByIdOrFailAllowNull(?FileIdentity $id): ?File
     {
         if ($id === null) {
             return null;

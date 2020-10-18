@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Domain\Outlet\App\Outlet;
 
 use App\Exception\NotFoundException;
-use Domain\Common\Identity;
 use Domain\Outlet\App\Dto\OutletDto;
 use Domain\Outlet\Domain\Address;
 use Domain\Outlet\Domain\CommercialNetworkRepository;
 use Domain\Outlet\Domain\Outlet;
 use Domain\Outlet\Domain\OutletRepository;
+use Domain\Outlet\Domain\OutletIdentity;
 
 class UpdateOutletCommand
 {
@@ -29,7 +29,7 @@ class UpdateOutletCommand
     /**
      * @throws NotFoundException
      */
-    public function execute(Identity $id, OutletDto $outletDto): Outlet
+    public function execute(OutletIdentity $id, OutletDto $outletDto): Outlet
     {
         $outlet = $this->outletRepository->getByIdOrFail($id);
 

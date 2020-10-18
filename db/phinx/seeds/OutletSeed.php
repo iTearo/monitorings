@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Domain\Common\Identity;
 use Domain\Outlet\Data\DoctrineOutletRepository;
+use Domain\Outlet\Domain\OutletIdentity;
 use Phinx\Seed\AbstractSeed;
 
 class OutletSeed extends AbstractSeed
@@ -60,7 +60,7 @@ class OutletSeed extends AbstractSeed
         for ($i = 0; $i < 95; $i++) {
             /** @noinspection PhpUnhandledExceptionInspection */
             $data[] = [
-                'id' => (string) Identity::new(),
+                'id' => (string) OutletIdentity::new(),
                 'commercial_network_id' => $commercialNetworks[random_int(0, count($commercialNetworks) - 1)]['id'],
                 'address' => json_encode(
                     [

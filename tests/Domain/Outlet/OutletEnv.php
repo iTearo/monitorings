@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Outlet;
 
-use Domain\Common\Identity;
 use Domain\Outlet\App\Dto\AddressDto;
 use Domain\Outlet\App\Dto\OutletDto;
+use Domain\Outlet\Domain\CommercialNetworkIdentity;
 use TestTools\TestEnv;
 
 class OutletEnv extends TestEnv
@@ -24,7 +24,7 @@ class OutletEnv extends TestEnv
     {
         $outletDto = new OutletDto();
         $outletDto->address = self::createAddressDto();
-        $outletDto->commercialNetworkId = Identity::new();
+        $outletDto->commercialNetworkId = CommercialNetworkIdentity::new();
         return $outletDto;
     }
 }
