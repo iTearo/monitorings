@@ -22,7 +22,7 @@ class IdentityType extends GuidType
         return $value === null ? null : Identity::fromString($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         return $value instanceof Identity ? (string) $value : $value;
     }
