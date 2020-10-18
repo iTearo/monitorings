@@ -7,7 +7,7 @@ namespace App\Doctrine\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\JsonType;
-use Monitorings\Outlet\Domain\Address;
+use Domain\Outlet\Domain\Address;
 
 class AddressType extends JsonType
 {

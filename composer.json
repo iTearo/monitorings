@@ -62,14 +62,14 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/App",
-            "Monitorings\\": "src/Monitorings"
+            "Domain\\": "src/Domain"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "TestTools\\": "tests/TestTools",
             "App\\": "tests/App",
-            "Monitorings\\": "tests/Monitorings"
+            "Domain\\": "tests/Domain"
         }
     },
     "replace": {

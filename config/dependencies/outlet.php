@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-use Monitorings\Outlet\App\CommercialNetwork\CreateCommercialNetworkCommand;
-use Monitorings\Outlet\App\Outlet\CreateOutletCommand;
-use Monitorings\Outlet\App\CommercialNetwork\UpdateCommercialNetworkCommand;
-use Monitorings\Outlet\App\Outlet\UpdateOutletCommand;
-use Monitorings\Outlet\Data\DoctrineCommercialNetworkRepository;
-use Monitorings\Outlet\Data\DoctrineOutletRepository;
-use Monitorings\Outlet\Domain\CommercialNetwork;
-use Monitorings\Outlet\Domain\CommercialNetworkRepository;
-use Monitorings\Outlet\Domain\Outlet;
-use Monitorings\Outlet\Domain\OutletRepository;
+use Domain\Outlet\App\CommercialNetwork\CreateCommercialNetworkCommand;
+use Domain\Outlet\App\Outlet\CreateOutletCommand;
+use Domain\Outlet\App\CommercialNetwork\UpdateCommercialNetworkCommand;
+use Domain\Outlet\App\Outlet\UpdateOutletCommand;
+use Domain\Outlet\Data\DoctrineCommercialNetworkRepository;
+use Domain\Outlet\Data\DoctrineOutletRepository;
+use Domain\Outlet\Domain\CommercialNetwork;
+use Domain\Outlet\Domain\CommercialNetworkRepository;
+use Domain\Outlet\Domain\Outlet;
+use Domain\Outlet\Domain\OutletRepository;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 

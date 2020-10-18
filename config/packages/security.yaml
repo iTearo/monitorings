@@ -1,6 +1,6 @@
 security:
     encoders:
-        Monitorings\User\Domain\User:
+        Domain\User\Domain\User:
             algorithm: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -8,7 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: Monitorings\User\Domain\User
+                class: Domain\User\Domain\User
                 property: email
     firewalls:
         dev:

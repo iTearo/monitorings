@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Monitorings\User\Data\DoctrineUserRepository;
-use Monitorings\User\Domain\User;
-use Monitorings\User\Domain\UserRepository;
+use Domain\User\Data\DoctrineUserRepository;
+use Domain\User\Domain\User;
+use Domain\User\Domain\UserRepository;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 

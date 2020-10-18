@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use Monitorings\Outlet\Domain\Address;
+use Domain\Outlet\Domain\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
