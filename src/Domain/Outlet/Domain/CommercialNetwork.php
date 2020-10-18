@@ -6,13 +6,12 @@ namespace Domain\Outlet\Domain;
 
 use Domain\Common\CreatedAndUpdatedDatetime;
 use Domain\File\Domain\File;
-use Domain\Common\Identity;
 
 class CommercialNetwork
 {
     use CreatedAndUpdatedDatetime;
 
-    private Identity $id;
+    private CommercialNetworkIdentity $id;
 
     private string $title;
 
@@ -21,11 +20,11 @@ class CommercialNetwork
     public function __construct(
         string $title
     ) {
-        $this->id = Identity::new();
+        $this->id = CommercialNetworkIdentity::new();
         $this->title = $title;
     }
 
-    public function getId(): Identity
+    public function getId(): CommercialNetworkIdentity
     {
         return $this->id;
     }

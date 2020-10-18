@@ -9,11 +9,11 @@ use App\Exception\RequestValidationException;
 use App\Form\CommercialNetworkFormType;
 use Domain\File\Domain\FileService;
 use Domain\File\Domain\UploadedFile;
-use Domain\Common\Identity;
 use Domain\Outlet\App\CommercialNetwork\CreateCommercialNetworkCommand;
 use Domain\Outlet\App\Dto\CommercialNetworkDto;
 use Domain\Outlet\App\CommercialNetwork\UpdateCommercialNetworkCommand;
 use Domain\Outlet\Domain\CommercialNetwork;
+use Domain\Outlet\Domain\CommercialNetworkIdentity;
 use Domain\Outlet\Domain\CommercialNetworkRepository;
 use Domain\User\Domain\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
@@ -128,7 +128,7 @@ class CommercialNetworkController extends BaseController
      */
     public function editAction($id, Request $request): Response
     {
-        $entity = $this->commercialNetworkRepository->getByIdOrFail(Identity::fromString($id));
+        $entity = $this->commercialNetworkRepository->getByIdOrFail(CommercialNetworkIdentity::fromString($id));
 
         $form = $this->makeForm(CommercialNetworkFormType::class, $entity);
 
@@ -151,7 +151,7 @@ class CommercialNetworkController extends BaseController
                 }
 
                 $commercialNetwork = $this->updateCommercialNetworkCommand->execute(
-                    Identity::fromString($id),
+                    CommercialNetworkIdentity::fromString($id),
                     $commercialNetworkDto
                 );
 

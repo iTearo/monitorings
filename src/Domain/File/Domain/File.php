@@ -6,14 +6,13 @@ namespace Domain\File\Domain;
 
 use Domain\Common\CreatedAndUpdatedDatetime;
 use Domain\File\Domain\Exceptions\UnknownFileStatusException;
-use Domain\Common\Identity;
 use Domain\User\Domain\User;
 
 class File
 {
     use CreatedAndUpdatedDatetime;
 
-    private Identity $id;
+    private FileIdentity $id;
 
     private ?string $path = null;
 
@@ -39,7 +38,7 @@ class File
         ?string $originalName = null,
         ?User $author = null
     ) {
-        $this->id = Identity::new();
+        $this->id = FileIdentity::new();
         $this->mimeType = $mimeType;
         $this->sha1 = $sha1;
         $this->md5 = $md5;
@@ -49,7 +48,7 @@ class File
         $this->author = $author;
     }
 
-    public function getId(): Identity
+    public function getId(): FileIdentity
     {
         return $this->id;
     }

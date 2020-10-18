@@ -7,16 +7,16 @@ namespace Domain\Outlet\Data;
 use App\Doctrine\Repository;
 use App\Exception\NotFoundException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Domain\Common\Identity;
 use Domain\Outlet\Domain\Outlet;
 use Domain\Outlet\Domain\OutletRepository;
+use Domain\Outlet\Domain\OutletIdentity;
 use Domain\Pagination\Pagination;
 
 class DoctrineOutletRepository extends Repository implements OutletRepository
 {
     public const TABLE = 'outlet';
 
-    public function getById(Identity $identity): ?Outlet
+    public function getById(OutletIdentity $identity): ?Outlet
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->findByGuid($identity->toString());
@@ -25,7 +25,7 @@ class DoctrineOutletRepository extends Repository implements OutletRepository
     /**
      * @throws NotFoundException
      */
-    public function getByIdOrFail(Identity $identity): Outlet
+    public function getByIdOrFail(OutletIdentity $identity): Outlet
     {
         /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->findByGuidOrFail($identity->toString());

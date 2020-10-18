@@ -7,9 +7,9 @@ namespace Domain\Outlet\App\CommercialNetwork;
 use App\Exception\NotFoundException;
 use Domain\File\Domain\File;
 use Domain\File\Domain\FileService;
-use Domain\Common\Identity;
 use Domain\Outlet\App\Dto\CommercialNetworkDto;
 use Domain\Outlet\Domain\CommercialNetwork;
+use Domain\Outlet\Domain\CommercialNetworkIdentity;
 use Domain\Outlet\Domain\CommercialNetworkRepository;
 
 class UpdateCommercialNetworkCommand
@@ -29,7 +29,7 @@ class UpdateCommercialNetworkCommand
     /**
      * @throws NotFoundException
      */
-    public function execute(Identity $id, CommercialNetworkDto $commercialNetworkDto): CommercialNetwork
+    public function execute(CommercialNetworkIdentity $id, CommercialNetworkDto $commercialNetworkDto): CommercialNetwork
     {
         $commercialNetwork = $this->commercialNetworkRepository->getByIdOrFail($id);
 

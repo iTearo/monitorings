@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Domain\File\Domain\FileIdentity;
 use Domain\File\Domain\FileService;
-use Domain\Common\Identity;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,7 +29,7 @@ class FileController extends BaseController
     public function viewAction(string $id): Response
     {
         $file = $this->fileService->getFileOrFail(
-            Identity::fromString($id)
+            FileIdentity::fromString($id)
         );
 
         /** @noinspection PhpUnhandledExceptionInspection */

@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 use App\Doctrine\ClassMetadataBuilderHelper;
 use App\Doctrine\Type\AddressType;
-use App\Doctrine\Type\IdentityType;
+use App\Doctrine\Type\OutletIdentityType;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Domain\Outlet\Data\DoctrineOutletRepository;
@@ -17,7 +17,7 @@ $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable(DoctrineOutletRepository::TABLE);
 $builder->setCustomRepositoryClass(DoctrineOutletRepository::class);
 
-$builder->createField('id', IdentityType::TYPE_NAME)->makePrimaryKey()->build();
+$builder->createField('id', OutletIdentityType::TYPE_NAME)->makePrimaryKey()->build();
 
 $builder->addManyToOne('commercialNetwork', CommercialNetwork::class);
 

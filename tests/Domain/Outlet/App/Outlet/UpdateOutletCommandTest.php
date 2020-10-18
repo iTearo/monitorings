@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Domain\Outlet\App\Outlet;
 
 use App\Exception\NotFoundException;
-use Domain\Common\Identity;
+use Domain\Outlet\Domain\CommercialNetworkIdentity;
 use Domain\Outlet\OutletAppEnv;
 use Domain\Outlet\OutletEnv;
+use Domain\Outlet\Domain\OutletIdentity;
 use TestTools\DbTestCase;
 
 class UpdateOutletCommandTest extends DbTestCase
@@ -45,10 +46,10 @@ class UpdateOutletCommandTest extends DbTestCase
     public function test_execute_outletNotFound(): void
     {
         // Arrange
-        $outletIdentity = Identity::new();
+        $outletIdentity = OutletIdentity::new();
 
         $outletDto = OutletEnv::createOutletDto();
-        $outletDto->commercialNetworkId = Identity::new();
+        $outletDto->commercialNetworkId = CommercialNetworkIdentity::new();
 
         $updateOutletCommand = self::makeUpdateOutletCommand();
 
@@ -66,7 +67,7 @@ class UpdateOutletCommandTest extends DbTestCase
         $outlet = OutletAppEnv::createOutlet();
 
         $outletDto = OutletEnv::createOutletDto();
-        $outletDto->commercialNetworkId = Identity::new();
+        $outletDto->commercialNetworkId = CommercialNetworkIdentity::new();
 
         $updateOutletCommand = self::makeUpdateOutletCommand();
 

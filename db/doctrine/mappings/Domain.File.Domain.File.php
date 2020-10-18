@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Doctrine\ClassMetadataBuilderHelper;
-use App\Doctrine\Type\IdentityType;
+use App\Doctrine\Type\FileIdentityType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -16,7 +16,7 @@ $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable(DoctrineFileRepository::TABLE);
 $builder->setCustomRepositoryClass(DoctrineFileRepository::class);
 
-$builder->createField('id', IdentityType::TYPE_NAME)->makePrimaryKey()->build();
+$builder->createField('id', FileIdentityType::TYPE_NAME)->makePrimaryKey()->build();
 
 $builder->addField('md5', Types::STRING);
 $builder->addField('sha1', Types::STRING);

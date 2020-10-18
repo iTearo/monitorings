@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Domain\Outlet\App\Outlet;
 
 use App\Exception\NotFoundException;
-use Domain\Common\Identity;
 use Domain\Outlet\App\Dto\AddressDto;
 use Domain\Outlet\App\Dto\OutletDto;
 use Domain\Outlet\Domain\CommercialNetwork;
+use Domain\Outlet\Domain\CommercialNetworkIdentity;
 use Domain\Outlet\Domain\CommercialNetworkRepository;
 use Domain\Outlet\Domain\OutletRepository;
 use Domain\Outlet\OutletAppEnv;
@@ -57,7 +57,7 @@ class CreateOutletCommandTest extends TestCase
         // Arrange
         $outletDto = new OutletDto();
         $outletDto->address = new AddressDto();
-        $outletDto->commercialNetworkId = Identity::new();
+        $outletDto->commercialNetworkId = CommercialNetworkIdentity::new();
 
         $createOutletCommand = new CreateOutletCommand(
             $this->makeOutletRepository(),
