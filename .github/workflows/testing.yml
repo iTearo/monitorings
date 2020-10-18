@@ -43,6 +43,9 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
 
+      - name: Dump autoload
+        run: composer dump-autoload
+
       - name: Verify database connection
         run: |
           while ! mysqladmin ping -h"127.0.0.1" -P"3306" --silent; do
