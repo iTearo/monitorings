@@ -6,7 +6,7 @@
     {{ form_start(form) }}
         {{ form_row(form.title) }}
         {{ form_row(form.logotype) }}
-        {% if logotypeFileUrl is defined %}
+        {% if logotypeFileUrl is not null %}
             <img src="{{ logotypeFileUrl }}" class="mb-3" alt="Логотип ТС">
         {% endif %}
     {{ form_end(form) }}

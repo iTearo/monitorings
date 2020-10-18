@@ -17,17 +17,13 @@ class IdentityType extends GuidType
         return self::TYPE_NAME;
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Identity
     {
         return $value === null ? null : Identity::fromString($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
-        if ($value instanceof Identity) {
-            $value = $value->toString();
-        }
-
-        return $value;
+        return $value instanceof Identity ? (string) $value : $value;
     }
 }

@@ -73,20 +73,22 @@ class Repository extends EntityRepository
 
     public function save(object $entity): void
     {
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $this->_em->persist($entity);
+        $unitOfWork = $this->getEntityManager()->getUnitOfWork();
+
+        $unitOfWork->persist($entity);
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->_em->flush($entity);
+        $unitOfWork->commit($entity);
     }
 
     public function delete(object $entity): void
     {
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $this->_em->remove($entity);
+        $unitOfWork = $this->getEntityManager()->getUnitOfWork();
+
+        $unitOfWork->remove($entity);
 
         /** @noinspection PhpUnhandledExceptionInspection */
-        $this->_em->flush($entity);
+        $unitOfWork->commit($entity);
     }
 
     /**
