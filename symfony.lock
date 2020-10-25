@@ -92,6 +92,9 @@
     "guzzlehttp/psr7": {
         "version": "1.6.1"
     },
+    "helthe/turbolinks": {
+        "version": "3.0.0"
+    },
     "league/flysystem": {
         "version": "1.1.3"
     },
